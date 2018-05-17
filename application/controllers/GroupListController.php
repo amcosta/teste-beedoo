@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class GroupListController extends CI_Controller {
 
     /**
-     * @var Users_model
+     * @var Groups_model
      */
     public $Model;
 
