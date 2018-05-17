@@ -43,16 +43,17 @@ class Posts_model extends CI_Model {
         ];
 
         $query = $this->db
-            ->select('SQL_CALC_FOUND_ROWS DISTINCT P.id, 
+            ->select('SQL_CALC_FOUND_ROWS P.id, 
                         P.id, 
                         title, 
                         DATE_FORMAT(P.created_at, \'%d/%m/%Y %H:%i\') as treated_datetime'
                 , false)
+            ->from('posts AS P')
             ->join('users AS U', 'P.user_id = U.id', 'inner')
-            ->join('user_has_groups AS UG', 'UG.user_id = U.id', 'left')
-            ->join('groups G', 'G.id = UG.group_id', 'left')
-            ->join('teams AS T', 'G.team_id = T.id', 'left')
-            ->from('posts AS P');
+            ->join('user_has_groups AS UG', 'UG.user_id = U.id', 'inner')
+            ->join('groups G', 'G.id = UG.group_id', 'inner')
+            ->join('teams AS T', 'G.team_id = T.id', 'inner')
+            ->where('T.id = ' . $this->teamID);
 
         //Ao filtrar por "todos" no datatables, ele envia -1
         if ( $limit > 0 ) {
