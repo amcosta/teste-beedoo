@@ -58,4 +58,7 @@ $route['users/get'] = 'UserListController/get';
 $route['posts'] = 'PostListController';
 $route['posts/get'] = 'PostListController/get';
 
+$route['groups'] = 'GroupListController';
+$route['groups/get'] = 'GroupListController/get';
+
 $route['translate_uri_dashes'] = FALSE;
