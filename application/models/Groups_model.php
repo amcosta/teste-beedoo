@@ -34,7 +34,7 @@ class Groups_model extends CI_Model {
             ->select('SQL_CALC_FOUND_ROWS G.id, G.id as id, G.name as name, DATE_FORMAT(G.created_at, \'%d/%m/%Y %H:%i\') as treated_datetime', false)
             ->from('groups AS G')
             ->join('teams AS T', 'G.team_id = T.id', 'inner')
-            ->where('T.id = ' . $this->teamID);
+            ->where('T.id = ' . filter_var($this->teamID, FILTER_SANITIZE_NUMBER_INT));
         ;
 
         //Ao filtrar por "todos" no datatables, ele envia -1

@@ -53,7 +53,7 @@ class Posts_model extends CI_Model {
             ->join('user_has_groups AS UG', 'UG.user_id = U.id', 'inner')
             ->join('groups G', 'G.id = UG.group_id', 'inner')
             ->join('teams AS T', 'G.team_id = T.id', 'inner')
-            ->where('T.id = ' . $this->teamID);
+            ->where('T.id = ' . filter_var($this->teamID, FILTER_SANITIZE_NUMBER_INT));
 
         //Ao filtrar por "todos" no datatables, ele envia -1
         if ( $limit > 0 ) {
