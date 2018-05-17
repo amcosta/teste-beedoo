@@ -43,7 +43,7 @@ class Posts_model extends CI_Model {
         ];
 
         $query = $this->db
-            ->select('SQL_CALC_FOUND_ROWS P.id, 
+            ->select('SQL_CALC_FOUND_ROWS DISTINCT P.id, 
                         P.id, 
                         title, 
                         DATE_FORMAT(P.created_at, \'%d/%m/%Y %H:%i\') as treated_datetime'
