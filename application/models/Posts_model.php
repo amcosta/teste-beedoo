@@ -39,13 +39,15 @@ class Posts_model extends CI_Model {
         // Col names by alias, used to order by colName, not alias, because
         // doesn't work when this is a datetime column
         $orderable = [
-            'fullname' => 'name',
+            'id' => 'P.id',
+            'title' => 'P.title',
+            'treated_datetime' => 'P.created_at'
         ];
 
         $query = $this->db
             ->select('SQL_CALC_FOUND_ROWS P.id, 
                         P.id, 
-                        title, 
+                        P.title, 
                         DATE_FORMAT(P.created_at, \'%d/%m/%Y %H:%i\') as treated_datetime'
                 , false)
             ->from('posts AS P')
