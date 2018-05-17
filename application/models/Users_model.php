@@ -44,6 +44,7 @@ class Users_model extends CI_Model {
         // doesn't work when this is a datetime column
         $orderable = [
             'fullname' => 'name',
+            'treated_datetime' => 'created_at'
         ];
 
         $query = $this->db
