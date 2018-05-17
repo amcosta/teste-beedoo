@@ -25,12 +25,16 @@ class Groups_model extends CI_Model {
         // Col names by alias, used to order by colName, not alias, because
         // doesn't work when this is a datetime column
         $orderable = [
-            'treated_datetime' => 'created_at'
+            'id' => 'G.id',
+            'name' => 'G.name',
+            'treated_datetime' => 'G.created_at'
         ];
 
         $query = $this->db
-            ->select('SQL_CALC_FOUND_ROWS id, id, name, DATE_FORMAT(created_at, \'%d/%m/%Y %H:%i\') as treated_datetime', false)
-            ->from('groups')
+            ->select('SQL_CALC_FOUND_ROWS G.id, G.id as id, G.name as name, DATE_FORMAT(G.created_at, \'%d/%m/%Y %H:%i\') as treated_datetime', false)
+            ->from('groups AS G')
+            ->join('teams AS T', 'G.team_id = T.id', 'inner')
+            ->where('T.id = ' . $this->teamID);
         ;
 
         //Ao filtrar por "todos" no datatables, ele envia -1
