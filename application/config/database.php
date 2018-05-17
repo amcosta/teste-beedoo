@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'mysqldb',
 	'username' => 'root',
-	'password' => '123123',
-	'database' => 'beedoo_dev_test',
+	'password' => 'root',
+	'database' => 'beedoo',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
